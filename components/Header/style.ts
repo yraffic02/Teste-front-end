@@ -25,6 +25,8 @@ export const HeaderLogo = styled.div`
     border-radius: 3.125rem;
 
     background-color: ${(props)=> props.theme.colors.redPrimary};
+
+    cursor: pointer;
 `
 
 export const HeaderLogoTitle = styled.h1`
@@ -35,17 +37,20 @@ export const HeaderLogoTitle = styled.h1`
 
 export const HeaderLinkPrimary = styled.p`
     font: ${(props)=> props.theme.fonts.body2Link};
+    cursor: pointer;
 `
 
 export const HeaderLinkSecondary = styled.p`
-
     border-radius: 1.875rem;
     padding: 0.87rem 1.5rem;
+
     font: ${(props)=> props.theme.fonts.body2Bold};
+    font-family: 'Inter';
 
     color: ${(props)=> props.theme.colors.white};
-
     background-color: ${(props)=> props.theme.colors.redPrimary};
+
+    cursor: pointer;
 `
 
 export const HeaderDiv = styled.div`
