@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { BreadcrumbContainer, BreadcrumbItemList, BreadcrumbList, BreadcrumbStyledLink } from './style';
 
-interface IBreadcrumb {
+export interface IBreadcrumb {
     paths: {
         url: string,
         label: string
