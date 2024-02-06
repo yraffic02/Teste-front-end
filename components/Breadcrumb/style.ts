@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const BreadcrumbContainer = styled.nav`
-   color: ${(props)=> props.theme.colors.white};
+   color: ${(props)=> props.theme.colors.grayPrimary};
 `
 export const BreadcrumbList = styled.ol`
     display: flex;
@@ -21,6 +21,6 @@ export const BreadcrumbItemList = styled.li`
 export const BreadcrumbStyledLink = styled.a`
   color: inherit;
   text-decoration: none;
-  color: ${(props)=> props.theme.colors.white};
+  color: ${(props)=> props.theme.colors.grayPrimary};
   margin-right: 0.25rem;
 `

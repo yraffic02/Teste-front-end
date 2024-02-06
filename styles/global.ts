@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
-    
+    font-family: 'Inter';
     color: #000;
   }
 `;
