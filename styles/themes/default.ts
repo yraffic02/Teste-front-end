@@ -12,7 +12,7 @@ export const defaultTheme = {
     fontH1: "700 2rem/2.5rem 'Inter'",
     fontH2: "600 1.5rem/2rem 'Inter'",
     fontH3: "600 1.25rem/1.5rem 'Inter'",
-    fontH4: "700 0.75rem/1rem",
+    fontH4: "700 1.12rem/1.25rem Inter",
 
     body1Bold: "700 1rem/1.125rem 'Inter'",
     body1Regular: "500 1rem/1.125rem 'Inter'",
