@@ -12,6 +12,12 @@ export const GlobalStyle = createGlobalStyle`
     height: 100vh;
 
     overflow-x: hidden;
+    font-family: 'Inter';
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
   }
 `;
 
