@@ -9,5 +9,5 @@ export const SecondaryHeaderContainer = styled.div`
 
     padding: 2rem 0 3.75rem 6.625rem;
 
-    background-color: ${(props)=> props.theme.colors.redPrimary};
+    background-color: ${(props)=> props.theme.colors.redPrimary};    
 `
