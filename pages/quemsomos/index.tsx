@@ -1,9 +1,12 @@
+import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { WhoWeAreContainer } from "./style";
 
 export default function WhoWeArePage() {
     return(
         <WhoWeAreContainer>
-            oi
+            <SecondaryHeader>
+                
+            </SecondaryHeader>
         </WhoWeAreContainer>
     )
 }
