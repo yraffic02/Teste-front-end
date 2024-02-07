@@ -13,7 +13,7 @@ export const WhoWeAreContainer = styled.main`
 export const WhoWeAreTitle = styled.h1`
     font: ${(props)=> props.theme.fonts.fontH1};
 `
-export const WhoWeAreSecondaryTitle = styled.h1`
+export const WhoWeAreSecondaryTitle = styled.p`
     font: ${(props)=> props.theme.fonts.body2Regular};
     color: ${(props)=> props.theme.colors.grayPrimary};
 `

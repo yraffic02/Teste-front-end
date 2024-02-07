@@ -1,5 +1,5 @@
 import { GetStaticProps, NextPage } from "next";
-import { Breadcrumb, IBreadcrumb } from "../../components/Breadcrumb";
+import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { 
     WhoWeAreContainer, 
@@ -9,8 +9,12 @@ import {
     WhoWeAreSecondaryTitle, 
     WhoWeAreTitle 
 } from "./style";  
+
+type WhoWeArePageProps = {
+  paths: BreadcrumbType[]
+}
   
-export const WhoWeArePage: NextPage<IBreadcrumb> = ({ paths }: IBreadcrumb) => {
+export const WhoWeArePage: NextPage<WhoWeArePageProps> = ({ paths }) => {
     return (
       <WhoWeAreContainer>
         <SecondaryHeader>
@@ -102,4 +106,4 @@ export const getStaticProps: GetStaticProps = async (context) => {
         paths
       }
     };
-  }
+}

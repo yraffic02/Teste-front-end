@@ -1,18 +1,20 @@
 import Link from 'next/link';
 import { BreadcrumbContainer, BreadcrumbItemList, BreadcrumbList, BreadcrumbStyledLink } from './style';
 
-export interface IBreadcrumb {
-    paths: {
-        url: string,
-        label: string
-    }[]
+export type BreadcrumbType = {
+    url: string,
+    label: string
+}
+
+interface IBreadcrumb {
+    paths: BreadcrumbType[]
 }
 
 export const Breadcrumb = ({ paths }: IBreadcrumb) => {
   return (
     <BreadcrumbContainer>
       <BreadcrumbList>
-        {paths.map((path, index) => (
+        {paths.map((path: BreadcrumbType, index) => (
           <BreadcrumbItemList key={index}>
             <Link href={path.url}>
               <BreadcrumbStyledLink>

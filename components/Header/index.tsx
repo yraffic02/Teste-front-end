@@ -17,12 +17,12 @@ export const Header = () =>{
                 </HeaderLogoTitle>
             </HeaderLogo>
             <HeaderDiv>
-                <Link href='/quemsomos'>
+                <Link href='/quem-somos'>
                     <HeaderLinkPrimary>
                         Quem Somos
                     </HeaderLinkPrimary>
                 </Link>
-                <Link href='#'>
+                <Link href='agendar-consulta'>
                     <HeaderLinkSecondary>
                         Agendar Consulta
                     </HeaderLinkSecondary>

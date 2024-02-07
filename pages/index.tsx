@@ -1,6 +1,7 @@
+import { GetStaticProps, NextPage } from "next";
 import { HomeContainer, HomeTitle } from "./style";
 
-export default function Home() {
+export const Home: NextPage = () => {
   return (
     <HomeContainer>
       <HomeTitle>
@@ -8,4 +9,12 @@ export default function Home() {
       </HomeTitle>
     </HomeContainer>
   )
+}
+
+export default Home;
+
+export const getStaticProps: GetStaticProps = async (context) => {
+  return {
+    props: {}
+  };
 }
