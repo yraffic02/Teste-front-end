@@ -1,21 +1,23 @@
 import { Input } from "./components/Input"
 import { Label } from "./components/Label"
-import { 
+import { InputSelect } from "./components/inputSelect";
+import {
     ButtonFormAdd,
     FormDivider,
     FormQueryButtonSubmit,
-    FormQueryContainer, 
-    FormQueryContainerElementsColumn, 
-    FormQueryContainerElementsRow, 
-    FormQueryContent, 
-    FormQueryInformation, 
-    FormQueryInformationRow, 
-    FormQueryInformationText, 
-    FormQueryInformationTextExtraSmall, 
-    FormQueryTextSmallBold, 
+    FormQueryContainer,
+    FormQueryContainerElementsColumn,
+    FormQueryContainerElementsRow,
+    FormQueryContent,
+    FormQueryInformation,
+    FormQueryInformationRow,
+    FormQueryInformationText,
+    FormQueryInformationTextExtraSmall,
+    FormQueryTextSmallBold,
     FormQueryTextSmallRegular,
-    FormQueryTitle,  
+    FormQueryTitle,
 } from "./style"
+
 
 export const FormQuery = () => {
     return(
@@ -47,14 +49,14 @@ export const FormQuery = () => {
                             <Label labelHtmlFor="regiao">
                                 Região
                             </Label>
-                            <Input />
+                            <InputSelect />
                         </FormQueryContainerElementsColumn>
 
                         <FormQueryContainerElementsColumn>
                             <Label labelHtmlFor="cidade">
                                 Cidade
                             </Label>
-                            <Input />
+                            <InputSelect />
                         </FormQueryContainerElementsColumn>
                     </FormQueryContainerElementsRow>
 
@@ -74,7 +76,7 @@ export const FormQuery = () => {
                         <Label labelHtmlFor="cidade">
                             Pokémon 01
                         </Label>
-                        <Input />
+                        <InputSelect />
                     </FormQueryContainerElementsRow>
 
                     <FormQueryContainerElementsRow>
@@ -89,14 +91,14 @@ export const FormQuery = () => {
                             <Label labelHtmlFor="nome">
                                 Data para Atendimento
                             </Label>
-                            <Input />
+                            <InputSelect />
                         </FormQueryContainerElementsColumn>
                         
                         <FormQueryContainerElementsColumn>
                             <Label labelHtmlFor="sobrenome">
                                 Data para Atendimento
                             </Label>
-                            <Input />
+                            <InputSelect />
                         </FormQueryContainerElementsColumn>
 
                     </FormQueryContainerElementsRow>

@@ -4,6 +4,9 @@ import { Breadcrumb } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
 import { FormQuery } from "./components/FormQuery";
+import { CardSuccess } from "../../components/Cards/Success";
+
+
 
 export const QueryPage: NextPage = ()=> {
     const paths = [
@@ -13,21 +16,21 @@ export const QueryPage: NextPage = ()=> {
 
     return(
         <>
-        <Head>
-            <title>Agendar Consulta</title>
-        </Head>
-        <QueryPageContainer>
-            <SecondaryHeader>
-                <Breadcrumb paths={paths}/>
-                <QueryPageTitle>
-                    Agendar Consulta
-                </QueryPageTitle>
-                <QueryPageSecondaryTitle>
-                    Recupere seus pokémons em 5 segundos
-                </QueryPageSecondaryTitle>
-            </SecondaryHeader>
-            <FormQuery />
-        </QueryPageContainer>
+            <Head>
+                <title>Agendar Consulta</title>
+            </Head> 
+            <QueryPageContainer>
+                <SecondaryHeader>
+                    <Breadcrumb paths={paths}/>
+                    <QueryPageTitle>
+                        Agendar Consulta
+                    </QueryPageTitle>
+                    <QueryPageSecondaryTitle>
+                        Recupere seus pokémons em 5 segundos
+                    </QueryPageSecondaryTitle>
+                </SecondaryHeader>
+                <FormQuery />
+            </QueryPageContainer>
         </>
     )
 }
