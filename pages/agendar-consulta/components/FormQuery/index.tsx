@@ -3,10 +3,15 @@ import { Label } from "../Label"
 import { 
     ButtonFormAdd,
     FormDivider,
+    FormQueryButtonSubmit,
     FormQueryContainer, 
     FormQueryContainerElementsColumn, 
     FormQueryContainerElementsRow, 
     FormQueryContent, 
+    FormQueryInformation, 
+    FormQueryInformationRow, 
+    FormQueryInformationText, 
+    FormQueryInformationTextExtraSmall, 
     FormQueryTextSmallBold, 
     FormQueryTextSmallRegular,
     FormQueryTitle,  
@@ -100,6 +105,59 @@ export const FormQuery = () => {
 
                 <FormDivider />
 
+                <FormQueryInformation>
+                    <FormQueryInformationRow>
+                        <FormQueryInformationText>
+                            Número de pokémons a serem atendidos:
+                        </FormQueryInformationText>
+                        <FormQueryInformationText>
+                            01
+                        </FormQueryInformationText>
+                    </FormQueryInformationRow>
+
+                    <FormQueryInformationRow>
+                        <FormQueryInformationText>
+                            Atendimento unitário por pokémon: 
+                        </FormQueryInformationText>
+                        <FormQueryInformationText>
+                            R$ 70,00
+                        </FormQueryInformationText>
+                    </FormQueryInformationRow>
+
+                    <FormQueryInformationRow>
+                        <FormQueryInformationText>
+                            Subtotal:
+                        </FormQueryInformationText>
+                        <FormQueryInformationText>
+                            R$ 70,00
+                        </FormQueryInformationText>
+                    </FormQueryInformationRow>
+
+                    <FormQueryInformationRow>
+                        <FormQueryInformationText>
+                            Taxa geracional*: 
+                        </FormQueryInformationText>
+                        <FormQueryInformationText>
+                            R$ 2,10
+                        </FormQueryInformationText>
+                    </FormQueryInformationRow>
+                    
+                    <FormQueryInformationTextExtraSmall>
+                        *adicionamos uma taxa de 3%, multiplicado pelo número da geração mais alta do time, com limite de até 30%
+                    </FormQueryInformationTextExtraSmall>
+
+                </FormQueryInformation>
+                
+                <FormQueryInformationRow>
+                    <FormQueryTitle>
+                        Valor Total: R$ 72,10
+                    </FormQueryTitle>
+
+                    <FormQueryButtonSubmit>
+                        Concluir Agendamento
+                    </FormQueryButtonSubmit>
+                </FormQueryInformationRow>
+                
             </FormQueryContainer>
         </>
     )

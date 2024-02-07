@@ -8,6 +8,7 @@ export const FormQueryContainer = styled.form`
 
     gap: 1rem;
     padding: 1rem;
+    margin-bottom: 2rem;
 `
 export const FormQueryTitle = styled.h2`
     font: ${(props)=> props.theme.fonts.fontH2};
@@ -66,4 +67,46 @@ export const FormDivider = styled.div`
     border: 0.06rem solid ${(props)=> props.theme.colors.grayInput};
 
     margin: 2rem 0;
+`
+
+export const FormQueryInformation = styled.div`
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 0.5rem;
+
+    margin-bottom: 2rem;
+`
+export const FormQueryInformationText = styled.p`
+    font: ${(props)=> props.theme.fonts.body2Regular};
+    color: ${(props)=> props.theme.colors.graySecondary};
+`
+export const FormQueryInformationRow = styled.div`
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+`
+export const FormQueryInformationTextExtraSmall = styled.span`
+    font-family: 'Inter';
+    font-size: 0.5rem;
+    font-weight: 400;
+    color: ${(props)=> props.theme.colors.graySecondary};
+`
+
+export const FormQueryButtonSubmit = styled.button`
+    all: unset;
+
+    border-radius: 1.875rem;
+    padding: 0.87rem 1.5rem;
+
+    font: ${(props)=> props.theme.fonts.body2Bold};
+
+    color: ${(props)=> props.theme.colors.white};
+    background-color: ${(props)=> props.theme.colors.redPrimary};
+
+    cursor: pointer;
 `
