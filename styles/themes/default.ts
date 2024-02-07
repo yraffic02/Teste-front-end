@@ -6,7 +6,8 @@ export const defaultTheme = {
     redPrimary: "#E40F0F",
     redSecondary: "#DF8686",
     grayPrimary: "#EEEEEE",
-    graySecondary: "#747474"
+    graySecondary: "#747474",
+    grayInput: "#D5D5D5"
   },
   fonts: {
     fontH1: "700 2rem/2.5rem 'Inter'",
