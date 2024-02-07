@@ -1,14 +1,20 @@
-import { GetServerSideProps, NextPage } from "next";
-import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
+import { NextPage } from "next";
+import Head from "next/head";
+import { Breadcrumb } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
-import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
+import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
 
-type QueryPageProps = {
-    paths: BreadcrumbType[]
-}
+export const QueryPage: NextPage = ()=> {
+    const paths = [
+        { url: '/', label: 'Home' },
+        { url: '/agendar-consulta', label: 'Agendar Consulta' }
+    ];
 
-export const QueryPage: NextPage<QueryPageProps> = ({paths})=> {
     return(
+        <>
+        <Head>
+            <title>Agendar Consulta</title>
+        </Head>
         <QueryPageContainer>
             <SecondaryHeader>
                 <Breadcrumb paths={paths}/>
@@ -20,20 +26,8 @@ export const QueryPage: NextPage<QueryPageProps> = ({paths})=> {
                 </QueryPageSecondaryTitle>
             </SecondaryHeader>
         </QueryPageContainer>
+        </>
     )
 }
 
 export default QueryPage;
-
-export const getServerSideProps: GetServerSideProps = async (context) =>{
-    const paths = [
-        { url: '/', label: 'Home' },
-        { url: '/agendar-consulta', label: 'Agendar Consulta' }
-    ];
-
-    return {
-        props: {
-            paths
-        }
-    }
-}
