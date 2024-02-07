@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const QueryPageContainer = styled.main`
     min-height: calc(100vh - 104px - 61px);
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 `
 export const QueryPageTitle = styled.h1`
     font: ${(props)=> props.theme.fonts.fontH1};

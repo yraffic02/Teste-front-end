@@ -3,6 +3,7 @@ import Head from "next/head";
 import { Breadcrumb } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
+import { FormQuery } from "./components/FormQuery";
 
 export const QueryPage: NextPage = ()=> {
     const paths = [
@@ -25,6 +26,7 @@ export const QueryPage: NextPage = ()=> {
                     Recupere seus pokémons em 5 segundos
                 </QueryPageSecondaryTitle>
             </SecondaryHeader>
+            <FormQuery />
         </QueryPageContainer>
         </>
     )
