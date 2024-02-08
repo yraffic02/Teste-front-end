@@ -112,7 +112,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                     <Label labelHtmlFor="Pokémon 01">
                         Pokémon 01
                     </Label>
-                    <InputSelect id="Pokémon 01">
+                    <InputSelect id="Pokémon 01" typeWidth="large">
                         {
                             pokemons.map((poke, index)=>{
                                 return <option key={index} value={poke.name}>{poke.name}</option>
