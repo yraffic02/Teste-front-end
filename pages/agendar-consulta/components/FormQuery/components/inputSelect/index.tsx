@@ -1,7 +1,10 @@
+import { SelectHTMLAttributes } from "react"
 import { InputContainer } from "./style"
 
-export const InputSelect = () =>{
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {}
+
+export const InputSelect: React.FC<SelectProps> = (props) =>{
     return(
-        <InputContainer />
+        <InputContainer as="select" {...props}/>
     )
 }
