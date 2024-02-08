@@ -4,14 +4,17 @@ import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
 import dynamic from 'next/dynamic'
 import {GetServerSideProps, NextPage } from "next";
+import { apiLocal } from "../../lib/api-local";
 
 type queryPageProps = {
-    paths: BreadcrumbType[]
+    paths: BreadcrumbType[],
+    dates: string[], 
+    times: string[]
 }
 
 const FormClient = dynamic(()=> import('../agendar-consulta/components/FormQuery'), {ssr: false})
 
-const QueryPage:NextPage<queryPageProps> = ({paths}) =>{
+const QueryPage:NextPage<queryPageProps> = ({paths, dates, times}) =>{
     return(
         <>
             <Head>
@@ -27,7 +30,10 @@ const QueryPage:NextPage<queryPageProps> = ({paths}) =>{
                         Recupere seus pokémons em 5 segundos
                     </QueryPageSecondaryTitle>
                 </SecondaryHeader>
-                <FormClient />
+                <FormClient 
+                    dates={dates}
+                    times={times}
+                />
             </QueryPageContainer>
         </>
     )
@@ -40,10 +46,19 @@ export const getServerSideProps: GetServerSideProps = async (context) =>{
         { url: '/', label: 'Home' },
         { url: '/agendar-consulta', label: 'Agendar Consulta' }
     ];
+    
+    const resDate = await apiLocal.get('/scheduling/date');
+    const dates = resDate.data
 
+    const resTime = await apiLocal.post('/scheduling/time');
+    const times = resTime.data;
+
+    console.log(times)
     return {
         props: {
-            paths
+            paths,
+            dates, 
+            times
         }
     }
 }

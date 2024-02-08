@@ -18,17 +18,19 @@ import {
     FormQueryTextSmallRegular,
     FormQueryTitle,
 } from "./style"
+import { toast } from "react-toastify";
 
 
-const FormQuery = () => {  
-    const [domLoaded, setDomLoaded] = useState(false);
+type formQueryProps = {
+    dates: string[],
+    times: string[]
+}
 
-    useEffect(() => {
-        setDomLoaded(true);
-      }, []);
+const FormQuery = ({dates, times}:formQueryProps) => {  
+    const notify = () => toast("Wow so easy !");
     return(
         <>
-            <FormQueryContainer style={domLoaded?undefined:{visibility: 'hidden'}}>
+            <FormQueryContainer>
                 <FormQueryTitle>
                     Preencha o formulário abaixo para agendar sua consulta
                 </FormQueryTitle>
@@ -97,14 +99,26 @@ const FormQuery = () => {
                             <Label labelHtmlFor="data">
                                 Data para Atendimento
                             </Label>
-                            <InputSelect id="data"/>
+                            <InputSelect id="data">
+                                {
+                                    dates.map((date, index)=>{
+                                        return <option key={index} value={date}>{date}</option>
+                                    })
+                                }
+                            </InputSelect>
                         </FormQueryContainerElementsColumn>
                         
                         <FormQueryContainerElementsColumn>
                             <Label labelHtmlFor="hora">
                                 Horário de Atendimento
                             </Label>
-                            <InputSelect id="hora" />
+                            <InputSelect id="hora">
+                                {
+                                    times.map((time, index)=>{
+                                        return <option key={index} value={time}>{time}</option>
+                                    })
+                                }
+                            </InputSelect>
                         </FormQueryContainerElementsColumn>
 
                     </FormQueryContainerElementsRow>
@@ -161,7 +175,7 @@ const FormQuery = () => {
                         Valor Total: R$ 72,10
                     </FormQueryTitle>
 
-                    <FormQueryButtonSubmit>
+                    <FormQueryButtonSubmit onClick={notify}>
                         Concluir Agendamento
                     </FormQueryButtonSubmit>
                 </FormQueryInformationRow>
