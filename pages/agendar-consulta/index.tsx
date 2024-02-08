@@ -18,6 +18,7 @@ type queryPageProps = {
     times: string[],
     locations: responsePoke[],
     regions: responsePoke[]
+    pokemon: responsePoke[]
 }
 
 const FormClient = dynamic(()=> import('../agendar-consulta/components/FormQuery'), {ssr: false})
@@ -27,9 +28,9 @@ const QueryPage:NextPage<queryPageProps> = ({
     dates, 
     times,
     locations,
-    regions
+    regions, 
+    pokemon
 }) =>{
-    console.log('na page',locations)
     return(
         <>
             <Head>
@@ -50,6 +51,7 @@ const QueryPage:NextPage<queryPageProps> = ({
                     times={times}
                     locations={locations}
                     regions={regions}
+                    pokemons={pokemon}
                 />
             </QueryPageContainer>
         </>
@@ -76,13 +78,17 @@ export const getServerSideProps: GetServerSideProps = async (context) =>{
     const resRegion = await apiPoke.get('/region')
     const regions = resRegion.data.results
 
+    const resPokemon = await apiPoke.get('/pokemon')
+    const pokemon = resPokemon.data.results
+
     return {
         props: {
             paths,
             dates, 
             times,
             locations,
-            regions
+            regions, 
+            pokemon
         }
     }
 } 

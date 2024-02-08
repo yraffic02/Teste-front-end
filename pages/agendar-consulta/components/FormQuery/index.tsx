@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { Input } from "../../../../components/Input"
 import { Label } from "../../../../components/Label"
 import { InputSelect } from "../../../../components/inputSelect";
@@ -27,16 +27,22 @@ type formQueryProps = {
     dates: string[],
     times: string[],
     locations: responsePoke[],
-    regions: responsePoke[]
+    regions: responsePoke[],
+    pokemons: responsePoke[]
 }
 
-const FormQuery = ({dates, times, locations, regions}:formQueryProps) => {  
+
+const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) => {  
     const notify = () => toast("Wow so easy !");
 
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) =>{
+        e.preventDefault()
+        notify()
+    }
     return(
         <>
-            <ToastContainer />
-            <FormQueryContainer>
+            <FormQueryContainer  onSubmit={handleSubmit}>
+                <ToastContainer />
                 <FormQueryTitle>
                     Preencha o formulário abaixo para agendar sua consulta
                 </FormQueryTitle>
@@ -102,7 +108,13 @@ const FormQuery = ({dates, times, locations, regions}:formQueryProps) => {
                         <Label labelHtmlFor="Pokémon 01">
                             Pokémon 01
                         </Label>
-                        <InputSelect id="Pokémon 01"/>
+                        <InputSelect id="Pokémon 01">
+                            {
+                                pokemons.map((poke, index)=>{
+                                    return <option key={index} value={poke.name}>{poke.name}</option>
+                                })
+                            }
+                        </InputSelect>
                     </FormQueryContainerElementsRow>
 
                     <FormQueryContainerElementsRow>
@@ -193,7 +205,7 @@ const FormQuery = ({dates, times, locations, regions}:formQueryProps) => {
                         Valor Total: R$ 72,10
                     </FormQueryTitle>
 
-                    <FormQueryButtonSubmit onClick={notify}>
+                    <FormQueryButtonSubmit type="submit">
                         Concluir Agendamento
                     </FormQueryButtonSubmit>
                 </FormQueryInformationRow>
