@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Input } from "./components/Input"
-import { Label } from "./components/Label"
-import { InputSelect } from "./components/inputSelect";
+import { Input } from "../../../../components/Input"
+import { Label } from "../../../../components/Label"
+import { InputSelect } from "../../../../components/inputSelect";
 import {
     ButtonFormAdd,
     FormDivider,
@@ -18,18 +18,24 @@ import {
     FormQueryTextSmallRegular,
     FormQueryTitle,
 } from "./style"
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { responsePoke } from "../..";
 
 
 type formQueryProps = {
     dates: string[],
-    times: string[]
+    times: string[],
+    locations: responsePoke[],
+    regions: responsePoke[]
 }
 
-const FormQuery = ({dates, times}:formQueryProps) => {  
+const FormQuery = ({dates, times, locations, regions}:formQueryProps) => {  
     const notify = () => toast("Wow so easy !");
+
     return(
         <>
+            <ToastContainer />
             <FormQueryContainer>
                 <FormQueryTitle>
                     Preencha o formulário abaixo para agendar sua consulta
@@ -57,14 +63,26 @@ const FormQuery = ({dates, times}:formQueryProps) => {
                             <Label labelHtmlFor="regiao">
                                 Região
                             </Label>
-                            <InputSelect id="regiao"/>
+                            <InputSelect id="regiao">
+                                {
+                                   regions.map((region, index)=>{
+                                        return <option key={index} value={region.name} >{region.name}</option>
+                                    })
+                                }
+                            </InputSelect>
                         </FormQueryContainerElementsColumn>
 
                         <FormQueryContainerElementsColumn>
                             <Label labelHtmlFor="cidade">
                                 Cidade
                             </Label>
-                            <InputSelect id="cidade" />
+                            <InputSelect id="cidade">
+                                {
+                                    locations.map((city, index)=> {
+                                        return <option key={index} value={city.name}>{city.name}</option>
+                                    })
+                                }
+                            </InputSelect>
                         </FormQueryContainerElementsColumn>
                     </FormQueryContainerElementsRow>
 
