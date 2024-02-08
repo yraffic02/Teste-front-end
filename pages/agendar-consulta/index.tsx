@@ -21,7 +21,7 @@ type queryPageProps = {
     pokemon: responsePoke[]
 }
 
-const FormClient = dynamic(()=> import('../agendar-consulta/components/FormQuery'), {ssr: false})
+const FormClient = dynamic(()=> import('../../components/FormQuery'), {ssr: false})
 
 const QueryPage:NextPage<queryPageProps> = ({
     paths, 
