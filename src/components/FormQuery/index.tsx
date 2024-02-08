@@ -20,7 +20,7 @@ import {
 } from "./style"
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { responsePoke } from "../../pages/agendar-consulta";
+import { responsePoke } from "../../agendar-consulta";
 
 
 type formQueryProps = {

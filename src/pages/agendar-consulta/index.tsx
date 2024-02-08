@@ -1,11 +1,11 @@
 import Head from "next/head";
-import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
-import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
 import dynamic from 'next/dynamic'
 import {GetServerSideProps, NextPage } from "next";
 import { apiLocal } from "../../lib/api-local";
 import { apiPoke } from "../../lib/api-poke";
+import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
+import { SecondaryHeader } from "../../components/SecondaryHeader";
 
 export type responsePoke = {
     name: string,
@@ -91,68 +91,4 @@ export const getServerSideProps: GetServerSideProps = async (context) =>{
             pokemon
         }
     }
-} 
-
-
-
-
-
-
-
-
-
-
-/* export default function QueryPage(){
-    const [dates, setDates] = useState([])
-    const [times, setTimes] = useState([])
-    const paths: BreadcrumbType[] = [
-        { url: '/', label: 'Home' },
-        { url: '/agendar-consulta', label: 'Agendar Consulta' }
-    ];
-
-    const handleDetes = async()=>{
-        try {
-            const {data} = await apiLocal.get('/scheduling/date');
-            setDates(data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
-    const handleTimes = async()=>{
-        try {
-            const {data} = await apiLocal.post('/scheduling/time');
-            setTimes(data)
-        } catch (error) {
-            console.error(error)
-        }
-    }
-
-    useEffect(()=>{
-        handleDetes()
-        handleTimes()
-    },[])
-
-    return(
-        <>
-            <Head>
-                <title>Agendar Consulta</title>
-            </Head> 
-            <QueryPageContainer>
-                <SecondaryHeader>
-                    <Breadcrumb paths={paths}/>
-                    <QueryPageTitle>
-                        Agendar Consulta
-                    </QueryPageTitle>
-                    <QueryPageSecondaryTitle>
-                        Recupere seus pokémons em 5 segundos
-                    </QueryPageSecondaryTitle>
-                </SecondaryHeader>
-                <FormQuery 
-                    dates={dates}
-                    times={times}
-                />
-            </QueryPageContainer>
-        </>
-    )
-} */
+}

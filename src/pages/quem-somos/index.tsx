@@ -1,6 +1,5 @@
 import { GetStaticProps, NextPage } from "next";
-import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
-import { SecondaryHeader } from "../../components/SecondaryHeader";
+
 import { 
     WhoWeAreContainer, 
     WhoWeAreContainerText, 
@@ -9,6 +8,8 @@ import {
     WhoWeAreSecondaryTitle, 
     WhoWeAreTitle 
 } from "./style";  
+import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
+import { SecondaryHeader } from "../../components/SecondaryHeader";
 
 type WhoWeArePageProps = {
   paths: BreadcrumbType[]
