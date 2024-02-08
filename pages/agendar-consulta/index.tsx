@@ -1,19 +1,17 @@
-import { NextPage } from "next";
 import Head from "next/head";
-import { Breadcrumb } from "../../components/Breadcrumb";
+import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
-import { FormQuery } from "./components/FormQuery";
-import { CardSuccess } from "../../components/Cards/Success";
+import dynamic from 'next/dynamic'
+import {GetServerSideProps, NextPage } from "next";
 
+type queryPageProps = {
+    paths: BreadcrumbType[]
+}
 
+const FormClient = dynamic(()=> import('../agendar-consulta/components/FormQuery'), {ssr: false})
 
-export const QueryPage: NextPage = ()=> {
-    const paths = [
-        { url: '/', label: 'Home' },
-        { url: '/agendar-consulta', label: 'Agendar Consulta' }
-    ];
-
+const QueryPage:NextPage<queryPageProps> = ({paths}) =>{
     return(
         <>
             <Head>
@@ -29,10 +27,23 @@ export const QueryPage: NextPage = ()=> {
                         Recupere seus pokémons em 5 segundos
                     </QueryPageSecondaryTitle>
                 </SecondaryHeader>
-                <FormQuery />
+                <FormClient />
             </QueryPageContainer>
         </>
     )
 }
 
-export default QueryPage;
+export default  QueryPage;
+
+export const getServerSideProps: GetServerSideProps = async (context) =>{
+    const paths: BreadcrumbType[] = [
+        { url: '/', label: 'Home' },
+        { url: '/agendar-consulta', label: 'Agendar Consulta' }
+    ];
+
+    return {
+        props: {
+            paths
+        }
+    }
+}

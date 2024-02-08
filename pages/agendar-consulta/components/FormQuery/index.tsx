@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Input } from "./components/Input"
 import { Label } from "./components/Label"
 import { InputSelect } from "./components/inputSelect";
@@ -19,10 +20,15 @@ import {
 } from "./style"
 
 
-export const FormQuery = () => {
+const FormQuery = () => {  
+    const [domLoaded, setDomLoaded] = useState(false);
+
+    useEffect(() => {
+        setDomLoaded(true);
+      }, []);
     return(
         <>
-            <FormQueryContainer>
+            <FormQueryContainer style={domLoaded?undefined:{visibility: 'hidden'}}>
                 <FormQueryTitle>
                     Preencha o formulário abaixo para agendar sua consulta
                 </FormQueryTitle>
@@ -164,3 +170,5 @@ export const FormQuery = () => {
         </>
     )
 }
+
+export default FormQuery;
