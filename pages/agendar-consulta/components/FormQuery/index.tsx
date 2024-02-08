@@ -39,14 +39,14 @@ const FormQuery = () => {
                             <Label labelHtmlFor="nome">
                                 Nome
                             </Label>
-                            <Input />
+                            <Input id="nome"/>
                         </FormQueryContainerElementsColumn>
 
                         <FormQueryContainerElementsColumn>
                             <Label labelHtmlFor="sobrenome">
                             Sobrenome
                             </Label>
-                            <Input />
+                            <Input id="sobrenome" />
                         </FormQueryContainerElementsColumn>
                     </FormQueryContainerElementsRow>
 
@@ -55,14 +55,14 @@ const FormQuery = () => {
                             <Label labelHtmlFor="regiao">
                                 Região
                             </Label>
-                            <InputSelect />
+                            <InputSelect id="regiao"/>
                         </FormQueryContainerElementsColumn>
 
                         <FormQueryContainerElementsColumn>
                             <Label labelHtmlFor="cidade">
                                 Cidade
                             </Label>
-                            <InputSelect />
+                            <InputSelect id="cidade" />
                         </FormQueryContainerElementsColumn>
                     </FormQueryContainerElementsRow>
 
@@ -79,10 +79,10 @@ const FormQuery = () => {
                     </FormQueryContainerElementsRow>
 
                     <FormQueryContainerElementsRow>
-                        <Label labelHtmlFor="cidade">
+                        <Label labelHtmlFor="Pokémon 01">
                             Pokémon 01
                         </Label>
-                        <InputSelect />
+                        <InputSelect id="Pokémon 01"/>
                     </FormQueryContainerElementsRow>
 
                     <FormQueryContainerElementsRow>
@@ -94,17 +94,17 @@ const FormQuery = () => {
                     <FormQueryContainerElementsRow>
 
                         <FormQueryContainerElementsColumn>
-                            <Label labelHtmlFor="nome">
+                            <Label labelHtmlFor="data">
                                 Data para Atendimento
                             </Label>
-                            <InputSelect />
+                            <InputSelect id="data"/>
                         </FormQueryContainerElementsColumn>
                         
                         <FormQueryContainerElementsColumn>
-                            <Label labelHtmlFor="sobrenome">
-                                Data para Atendimento
+                            <Label labelHtmlFor="hora">
+                                Horário de Atendimento
                             </Label>
-                            <InputSelect />
+                            <InputSelect id="hora" />
                         </FormQueryContainerElementsColumn>
 
                     </FormQueryContainerElementsRow>
