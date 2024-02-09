@@ -1,6 +1,16 @@
 import * as yup from 'yup';
 
-export const schema = yup.object().shape({
+export type FormValues = {
+  nome: string,
+  sobrenome: string,
+  regiao: string,
+  cidade: string,
+  pokemon01: string,
+  data: string,
+  hora: string
+}
+
+export const formSchema = yup.object().shape({
     nome: yup.string().required('O nome é obrigatório'),
     sobrenome: yup.string().required('O sobrenome é obrigatório'),
     regiao: yup.string().required('A região é obrigatória'),

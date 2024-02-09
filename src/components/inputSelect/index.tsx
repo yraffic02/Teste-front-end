@@ -1,12 +1,12 @@
-import { SelectHTMLAttributes } from "react"
+import { SelectHTMLAttributes, forwardRef } from "react"
 import { InputContainer } from "./style"
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     typeWidth?: 'small' | 'large';
 }
 
-export const InputSelect: React.FC<SelectProps> = ({typeWidth, ...props}) =>{
-    return(
-        <InputContainer typeWidth={typeWidth} as="select" {...props}/>
+export const InputSelect = forwardRef<HTMLSelectElement, SelectProps>(({name, typeWidth, ...rest}, ref)=>{
+    return (
+        <InputContainer {...rest} name={name} ref={ref} typeWidth={typeWidth} as="select" />
     )
-}
+})
