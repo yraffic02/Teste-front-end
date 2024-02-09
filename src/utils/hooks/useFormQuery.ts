@@ -15,7 +15,13 @@ export const UseHookFormQuery = () =>{
         mode: 'all',
         reValidateMode: 'onChange',
         resolver: yupResolver(formSchema)
-    }) 
+    })
+    const [pokemon02, setPokemon02] = useState(false)
+    const [pokemon03, setPokemon03] = useState(false)
+    const [pokemon04, setPokemon04] = useState(false)
+    const [pokemon05, setPokemon05] = useState(false)
+    const [pokemon06, setPokemon06] = useState(false)
+    const [nextPokemonIndex, setNextPokemonIndex] = useState(0); 
 
     const simulateServerRequest = async (formData: FormValues) => {
         return new Promise<FormValues>((resolve, reject) => {
@@ -45,14 +51,43 @@ export const UseHookFormQuery = () =>{
                 setCardError(!cardError)
             });
     }
-    
-    const handleAddPokemon = (e: FormEvent) =>{
+
+    const handleFieldPokemon = (e: FormEvent) => {
         e.preventDefault()
-        console.log('oi')
-    } 
+        const pokemonStates = [pokemon02, pokemon03, pokemon04, pokemon05, pokemon06];
+        
+        const nextIndex = pokemonStates.findIndex((pokemonState, index) => index >= nextPokemonIndex && !pokemonState);
+
+        if (nextIndex === -1) {
+            setNextPokemonIndex(0);
+            return;
+        }
+
+        switch (nextIndex) {
+            case 0:
+                setPokemon02(true);
+                break;
+            case 1:
+                setPokemon03(true);
+                break;
+            case 2:
+                setPokemon04(true);
+                break;
+            case 3:
+                setPokemon05(true);
+                break;
+            case 4:
+                setPokemon06(true);
+                break;
+            default:
+                break;
+        }
+
+        setNextPokemonIndex(nextIndex + 1);
+    };
 
     return{
-        handleAddPokemon,
+        handleFieldPokemon,
         onSubmit,
         handleSubmit,
         register,
@@ -64,5 +99,11 @@ export const UseHookFormQuery = () =>{
         setCardError,
         setCardSuccess,
         setIsFrom,
+        pokemon02,
+        pokemon03,
+        pokemon04,
+        pokemon05,
+        pokemon06, 
+        nextPokemonIndex
     }
 }

@@ -26,6 +26,7 @@ import {
     FormQueryTextSmallRegular,
     FormQueryTitle,
 } from "./style";
+import { FormEvent, useState } from "react";
 
 type formQueryProps = {
     dates: Date[],
@@ -34,7 +35,6 @@ type formQueryProps = {
     regions: responsePoke[],
     pokemons: responsePoke[]
 }
-
 
 const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) => {
     const {
@@ -46,9 +46,17 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
         isForm,
         cardError,
         cardSuccess,
-        data
+        data,
+        handleFieldPokemon,
+        pokemon02,
+        pokemon03,
+        pokemon04,
+        pokemon05,
+        pokemon06,
+        nextPokemonIndex
     } = UseHookFormQuery()
     
+
     return(
         <>
             {
@@ -140,13 +148,118 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                 </InputSelect>
                             </FormQueryContainerElementsRow>
                             {errors.nome && <ErrorForm>{errors.pokemon01?.message}</ErrorForm>}
-                        </FormQueryContainerElementsColumn>
+                        </FormQueryContainerElementsColumn> 
+                        
+                        {
+                            pokemon02 &&
+                            <FormQueryContainerElementsColumn>
+                                <FormQueryContainerElementsRow>
+                                    <Label labelHtmlFor="Pokémon02" >
+                                        Pokémon 02
+                                    </Label>
+                                    <InputSelect  typeWidth="large" {...register('pokemon02')}>
+                                        <option disabled selected hidden value=''>Selecione seu Pokémon</option>
+                                        {
+                                            pokemons.map((poke, index)=>{
+                                                return <option key={index} value={poke.name}>{poke.name}</option>
+                                            })
+                                        }
+                                    </InputSelect>
+                                </FormQueryContainerElementsRow>
+                                {errors.nome && <ErrorForm>{errors.pokemon01?.message}</ErrorForm>}
+                            </FormQueryContainerElementsColumn>
+                        }
 
-                        <FormQueryContainerElementsRow>
-                            <ButtonFormAdd onClick={handleAddPokemon}>
-                            Adicionar novo pokémon ao time... +
-                            </ButtonFormAdd>
-                        </FormQueryContainerElementsRow>
+                        {   
+                            pokemon03 &&
+                            <FormQueryContainerElementsColumn>
+                                <FormQueryContainerElementsRow>
+                                    <Label labelHtmlFor="Pokémon03" >
+                                        Pokémon 03
+                                    </Label>
+                                    <InputSelect  typeWidth="large" {...register('pokemon03')}>
+                                        <option disabled selected hidden value=''>Selecione seu Pokémon</option>
+                                        {
+                                            pokemons.map((poke, index)=>{
+                                                return <option key={index} value={poke.name}>{poke.name}</option>
+                                            })
+                                        }
+                                    </InputSelect>
+                                </FormQueryContainerElementsRow>
+                                {errors.nome && <ErrorForm>{errors.pokemon01?.message}</ErrorForm>}
+                            </FormQueryContainerElementsColumn>
+                        }
+
+                        {
+                            pokemon04 &&
+                            <FormQueryContainerElementsColumn>
+                                <FormQueryContainerElementsRow>
+                                    <Label labelHtmlFor="Pokémon04" >
+                                        Pokémon 04
+                                    </Label>
+                                    <InputSelect  typeWidth="large" {...register('pokemon04')}>
+                                        <option disabled selected hidden value=''>Selecione seu Pokémon</option>
+                                        {
+                                            pokemons.map((poke, index)=>{
+                                                return <option key={index} value={poke.name}>{poke.name}</option>
+                                            })
+                                        }
+                                    </InputSelect>
+                                </FormQueryContainerElementsRow>
+                                {errors.nome && <ErrorForm>{errors.pokemon01?.message}</ErrorForm>}
+                            </FormQueryContainerElementsColumn>
+                        }
+                        
+                        {
+                            pokemon05 &&
+                            <FormQueryContainerElementsColumn>
+                                <FormQueryContainerElementsRow>
+                                    <Label labelHtmlFor="Pokémon05" >
+                                        Pokémon 05
+                                    </Label>
+                                    <InputSelect  typeWidth="large" {...register('pokemon05')}>
+                                        <option disabled selected hidden value=''>Selecione seu Pokémon</option>
+                                        {
+                                            pokemons.map((poke, index)=>{
+                                                return <option key={index} value={poke.name}>{poke.name}</option>
+                                            })
+                                        }
+                                    </InputSelect>
+                                </FormQueryContainerElementsRow>
+                                {errors.nome && <ErrorForm>{errors.pokemon01?.message}</ErrorForm>}
+                            </FormQueryContainerElementsColumn>
+                        }
+
+                        {
+                            pokemon06 &&
+                            <FormQueryContainerElementsColumn>
+                                <FormQueryContainerElementsRow>
+                                    <Label labelHtmlFor="Pokémon06" >
+                                        Pokémon 06
+                                    </Label>
+                                    <InputSelect  typeWidth="large" {...register('pokemon06')}>
+                                        <option disabled selected hidden value=''>Selecione seu Pokémon</option>
+                                        {
+                                            pokemons.map((poke, index)=>{
+                                                return <option key={index} value={poke.name}>{poke.name}</option>
+                                            })
+                                        }
+                                    </InputSelect>
+                                </FormQueryContainerElementsRow>
+                                {errors.nome && <ErrorForm>{errors.pokemon01?.message}</ErrorForm>}
+                            </FormQueryContainerElementsColumn>
+                        }
+                        
+                        {
+                            nextPokemonIndex === 5 ?
+                            ''
+                            :
+                            <FormQueryContainerElementsRow>
+                                <ButtonFormAdd onClick={handleFieldPokemon}>
+                                Adicionar novo pokémon ao time... +
+                                </ButtonFormAdd>
+                            </FormQueryContainerElementsRow>
+                        }
 
                         <FormQueryContainerElementsRow>
 

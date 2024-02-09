@@ -12,4 +12,5 @@ export const InputContainer = styled.select<InputContainerProps>`
     border-radius: 0.5rem;
 
     padding: 0.87rem;
+    position: relative;
 `
