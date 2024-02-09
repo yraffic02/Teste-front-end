@@ -1,7 +1,12 @@
 import Image from "next/image"
 import { CardButton, CardContainer, CardText, CardTextTitle } from "./style"
 
-export const CardSuccess = () =>{
+type CardProps = {
+    data: string,
+    hora: string
+}
+
+export const CardSuccess = ({data, hora}: CardProps) =>{
     return(
         <CardContainer>
             <CardTextTitle>
@@ -14,7 +19,7 @@ export const CardSuccess = () =>{
                 width={38}
             />
             <CardText>
-                Seu agendamento para dia xx/xx/xxxx, às 00h00m,
+                Seu agendamento para dia {data}, às {hora},
                 para 0x pokémons foi realizado com sucesso!
             </CardText>
             <CardButton>

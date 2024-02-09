@@ -8,6 +8,7 @@ export const UseHookFormQuery = () =>{
     const [isForm, setIsFrom] = useState(true)
     const [cardSuccess, setCardSuccess] = useState(false)
     const [cardError, setCardError] = useState(false)
+    const [data, setData] = useState<FormValues>()
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: 'all',
         reValidateMode: 'onChange',
@@ -34,6 +35,7 @@ export const UseHookFormQuery = () =>{
                 if(res){
                     setIsFrom(!isForm)
                     setCardSuccess(!cardSuccess)
+                    setData(res)
                 }
             }).catch((err) => {
                 console.log(err)
@@ -55,6 +57,7 @@ export const UseHookFormQuery = () =>{
         errors,
         isForm,
         cardError,
-        cardSuccess
+        cardSuccess,
+        data
     }
 }

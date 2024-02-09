@@ -4,11 +4,14 @@ import { Date } from "../../@core/domain/entities/dates";
 import { Time } from "../../@core/domain/entities/times";
 import { responsePoke } from "../../pages/agendar-consulta";
 import { UseHookFormQuery } from "../../utils/hooks/useFormQuery";
+import { CardError } from "../Cards/Error";
+import { CardSuccess } from "../Cards/Success";
 import { Input } from "../Input";
 import { Label } from "../Label";
 import { InputSelect } from "../inputSelect";
 import {
     ButtonFormAdd,
+    ErrorForm,
     FormDivider,
     FormQueryButtonSubmit,
     FormQueryContainer,
@@ -23,9 +26,6 @@ import {
     FormQueryTextSmallRegular,
     FormQueryTitle,
 } from "./style";
-import { useEffect, useState } from "react";
-import { CardSuccess } from "../Cards/Success";
-import { CardError } from "../Cards/Error";
 
 type formQueryProps = {
     dates: Date[],
@@ -45,7 +45,8 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
         register,
         isForm,
         cardError,
-        cardSuccess
+        cardSuccess,
+        data
     } = UseHookFormQuery()
     
     return(
@@ -67,7 +68,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                 <Input  
                                 {...register('nome')}
                                 />
-                                {errors.nome && <p>{errors.nome?.message}</p>}
+                                {errors.nome && <ErrorForm>{errors.nome?.message}</ErrorForm>}
                             </FormQueryContainerElementsColumn>
 
                             <FormQueryContainerElementsColumn>
@@ -75,7 +76,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                 Sobrenome
                                 </Label>
                                 <Input {...register('sobrenome')}/>
-                                {errors.nome && <p>{errors.sobrenome?.message}</p>}
+                                {errors.nome && <ErrorForm>{errors.sobrenome?.message}</ErrorForm>}
                             </FormQueryContainerElementsColumn>
                         </FormQueryContainerElementsRow>
 
@@ -91,7 +92,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                         })
                                     }
                                 </InputSelect>
-                                {errors.nome && <p>{errors.regiao?.message}</p>}
+                                {errors.nome && <ErrorForm>{errors.regiao?.message}</ErrorForm>}
                             </FormQueryContainerElementsColumn>
 
                             <FormQueryContainerElementsColumn>
@@ -105,7 +106,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                         })
                                     }
                                 </InputSelect>
-                                {errors.nome && <p>{errors.cidade?.message}</p>}
+                                {errors.nome && <ErrorForm>{errors.cidade?.message}</ErrorForm>}
                             </FormQueryContainerElementsColumn>
                         </FormQueryContainerElementsRow>
 
@@ -133,7 +134,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                 }
                             </InputSelect>
                         </FormQueryContainerElementsRow>
-                        {errors.nome && <p>{errors.pokemon01?.message}</p>}
+                        {errors.nome && <ErrorForm>{errors.pokemon01?.message}</ErrorForm>}
 
                         <FormQueryContainerElementsRow>
                             <ButtonFormAdd onClick={handleAddPokemon}>
@@ -160,7 +161,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                         })
                                     }
                                 </InputSelect>
-                                {errors.nome && <p>{errors.data?.message}</p>}
+                                {errors.nome && <ErrorForm>{errors.data?.message}</ErrorForm>}
                             </FormQueryContainerElementsColumn>
                             
                             <FormQueryContainerElementsColumn>
@@ -178,7 +179,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                         })
                                     }
                                 </InputSelect>
-                                {errors.nome && <p>{errors.hora?.message}</p>}
+                                {errors.nome && <ErrorForm>{errors.hora?.message}</ErrorForm>}
                             </FormQueryContainerElementsColumn>
 
                         </FormQueryContainerElementsRow>
@@ -242,7 +243,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                 </FormQueryContainer>
             }
             {
-                cardSuccess &&  <CardSuccess />
+                cardSuccess &&  <CardSuccess data={data?.data!} hora={data?.hora!}/>
             }
             {
                 cardError &&  <CardError />

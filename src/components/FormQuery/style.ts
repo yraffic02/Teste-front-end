@@ -110,3 +110,10 @@ export const FormQueryButtonSubmit = styled.button`
 
     cursor: pointer;
 `
+
+export const ErrorForm = styled.span`
+    font-size: 0.5rem;
+    font-weight: 400;
+    font-family: 'Inter';
+    color: ${(props)=> props.theme.colors.redPrimary};
+`
