@@ -2,10 +2,12 @@ import Head from "next/head";
 import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
 import dynamic from 'next/dynamic'
 import {GetServerSideProps, NextPage } from "next";
-import { apiLocal } from "../../lib/api-local";
-import { apiPoke } from "../../lib/api-poke";
 import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
+import { ListDateUseCase } from "../../@core/application/date/list-date.use-case";
+import { DateHttpGateway } from "../../@core/infra/gateways/date-http.gateway";
+import { apiLocal } from "../../@core/infra/api-local";
+import { apiPoke } from "../../@core/infra/api-poke";
 
 export type responsePoke = {
     name: string,
@@ -65,10 +67,10 @@ export const getServerSideProps: GetServerSideProps = async (context) =>{
         { url: '/', label: 'Home' },
         { url: '/agendar-consulta', label: 'Agendar Consulta' }
     ];
+    const gateway = new DateHttpGateway(apiLocal)
+    const useCase = new ListDateUseCase(gateway);
+    const datesData = await useCase.execute();
     
-    const resDate = await apiLocal.get('/scheduling/date');
-    const dates = resDate.data
-
     const resTime = await apiLocal.post('/scheduling/time');
     const times = resTime.data;
 
@@ -84,7 +86,7 @@ export const getServerSideProps: GetServerSideProps = async (context) =>{
     return {
         props: {
             paths,
-            dates, 
+            dates: datesData.map(date => date.props), 
             times,
             locations,
             regions, 
