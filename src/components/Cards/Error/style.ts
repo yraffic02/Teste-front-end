@@ -13,6 +13,7 @@ export const CardContainer = styled.div`
     border: 0.06rem solid rgba(223, 134, 134, 0.40);
 
     padding: 1.25rem;
+    margin: 4rem 0;
 `
 
 export const CardTextTitle = styled.h1`
