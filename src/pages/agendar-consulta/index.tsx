@@ -1,13 +1,13 @@
+import { GetServerSideProps, NextPage } from "next";
+import dynamic from 'next/dynamic';
 import Head from "next/head";
-import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
-import dynamic from 'next/dynamic'
-import {GetServerSideProps, NextPage } from "next";
-import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
-import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { ListDateUseCase } from "../../@core/application/date/list-date.use-case";
-import { DateHttpGateway } from "../../@core/infra/gateways/date-http.gateway";
 import { apiLocal } from "../../@core/infra/api-local";
 import { apiPoke } from "../../@core/infra/api-poke";
+import { Registry, container } from "../../@core/infra/container-registrey.api-local";
+import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
+import { SecondaryHeader } from "../../components/SecondaryHeader";
+import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
 
 export type responsePoke = {
     name: string,
@@ -67,8 +67,7 @@ export const getServerSideProps: GetServerSideProps = async (context) =>{
         { url: '/', label: 'Home' },
         { url: '/agendar-consulta', label: 'Agendar Consulta' }
     ];
-    const gateway = new DateHttpGateway(apiLocal)
-    const useCase = new ListDateUseCase(gateway);
+    const useCase = container.get<ListDateUseCase>(Registry.ListDateUseCase)
     const datesData = await useCase.execute();
     
     const resTime = await apiLocal.post('/scheduling/time');

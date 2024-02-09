@@ -8,7 +8,7 @@ export class DateHttpGateway implements DateGateway{
     async findAll(): Promise<Date[]> {
         try {
             const response = await this.http.get<Date[]>('/scheduling/date');
-            return response.data;
+            return response.data.map((date)=> new Date(date));
         } catch (error) {
             console.error("Erro ao buscar datas:", error);
             throw error;
