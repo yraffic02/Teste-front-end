@@ -66,7 +66,8 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                     Nome
                                 </Label>
                                 <Input  
-                                {...register('nome')}
+                                    {...register('nome')}
+                                    placeholder="Digite seu nome"
                                 />
                                 {errors.nome && <ErrorForm>{errors.nome?.message}</ErrorForm>}
                             </FormQueryContainerElementsColumn>
@@ -75,7 +76,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                 <Label labelHtmlFor="sobrenome">
                                 Sobrenome
                                 </Label>
-                                <Input {...register('sobrenome')}/>
+                                <Input {...register('sobrenome')} placeholder="Digite seu sobrenome"/>
                                 {errors.nome && <ErrorForm>{errors.sobrenome?.message}</ErrorForm>}
                             </FormQueryContainerElementsColumn>
                         </FormQueryContainerElementsRow>
@@ -86,6 +87,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                     Região
                                 </Label>
                                 <InputSelect  {...register('regiao')}>
+                                    <option disabled selected hidden value=''>Selecione sua região</option>
                                     {
                                         regions.map((region, index)=>{
                                             return <option key={index} value={region.name} >{region.name}</option>
@@ -100,6 +102,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                     Cidade
                                 </Label>
                                 <InputSelect {...register('cidade')}>
+                                    <option disabled selected hidden value=''>Selecione sua cidade</option>
                                     {
                                         locations.map((city, index)=> {
                                             return <option key={index} value={city.name}>{city.name}</option>
@@ -122,19 +125,22 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                             </FormQueryContainerElementsColumn>
                         </FormQueryContainerElementsRow>
 
-                        <FormQueryContainerElementsRow>
-                            <Label labelHtmlFor="Pokémon 01" >
-                                Pokémon 01
-                            </Label>
-                            <InputSelect  typeWidth="large" {...register('pokemon01')}>
-                                {
-                                    pokemons.map((poke, index)=>{
-                                        return <option key={index} value={poke.name}>{poke.name}</option>
-                                    })
-                                }
-                            </InputSelect>
-                        </FormQueryContainerElementsRow>
-                        {errors.nome && <ErrorForm>{errors.pokemon01?.message}</ErrorForm>}
+                        <FormQueryContainerElementsColumn>
+                            <FormQueryContainerElementsRow>
+                                <Label labelHtmlFor="Pokémon 01" >
+                                    Pokémon 01
+                                </Label>
+                                <InputSelect  typeWidth="large" {...register('pokemon01')}>
+                                    <option disabled selected hidden value=''>Selecione seu Pokémon</option>
+                                    {
+                                        pokemons.map((poke, index)=>{
+                                            return <option key={index} value={poke.name}>{poke.name}</option>
+                                        })
+                                    }
+                                </InputSelect>
+                            </FormQueryContainerElementsRow>
+                            {errors.nome && <ErrorForm>{errors.pokemon01?.message}</ErrorForm>}
+                        </FormQueryContainerElementsColumn>
 
                         <FormQueryContainerElementsRow>
                             <ButtonFormAdd onClick={handleAddPokemon}>
@@ -151,6 +157,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                 <InputSelect
                                     {...register('data')}
                                 >
+                                    <option disabled selected hidden value=''>Selecione uma data</option>
                                     {
                                         dates.map((date, index)=>{
                                             return (
@@ -169,6 +176,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                     Horário de Atendimento
                                 </Label>
                                 <InputSelect   {...register('hora')}>
+                                    <option disabled selected hidden value=''>Selecione um horário</option>
                                     {
                                         times.map((time, index)=>{
                                             return (

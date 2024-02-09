@@ -15,6 +15,7 @@ export const FormQueryTitle = styled.h2`
 `
 
 export const FormQueryContainerElementsColumn = styled.div`
+    width: 100%;
     display: flex;
     align-items: flex-start;
     flex-direction: column;
