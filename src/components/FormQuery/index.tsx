@@ -272,7 +272,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                         dates.map((date, index)=>{
                                             return (
                                                 <option key={index} value={date}>
-                                                    {date}
+                                                    {date.toLocaleString()}
                                                 </option>
                                             )
                                         })
@@ -291,7 +291,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                         times.map((time, index)=>{
                                             return (
                                                 <option key={index} value={time}>
-                                                    {time}
+                                                    {time.toLocaleString()}
                                                 </option>
                                             )
                                         })
