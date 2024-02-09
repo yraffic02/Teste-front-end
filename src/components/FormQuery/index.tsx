@@ -26,11 +26,10 @@ import {
     FormQueryTextSmallRegular,
     FormQueryTitle,
 } from "./style";
-import { FormEvent, useState } from "react";
 
 type formQueryProps = {
-    dates: Date[],
-    times: Time[],
+    dates: string[],
+    times: string[],
     locations: responsePoke[],
     regions: responsePoke[],
     pokemons: responsePoke[]
@@ -272,7 +271,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                     {
                                         dates.map((date, index)=>{
                                             return (
-                                                <option key={index} value={date.props?.date!}>
+                                                <option key={index} value={date}>
                                                     {date}
                                                 </option>
                                             )
@@ -291,7 +290,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                     {
                                         times.map((time, index)=>{
                                             return (
-                                                <option key={index} value={time.props?.time}>
+                                                <option key={index} value={time}>
                                                     {time}
                                                 </option>
                                             )
