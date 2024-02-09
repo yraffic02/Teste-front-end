@@ -5,17 +5,13 @@ import { Date } from "../../domain/entities/dates";
 export class DateHttpGateway implements DateGateway{
     constructor(private http: AxiosInstance){}
 
-    findAll(): Promise<Date[]> {
-        return this.http.get<Date[]>('/scheduling/date')
-            .then((res) =>
-                res.data.map((data) =>
-                    new Date(data)
-                )
-            )
-            .catch((error) => {
-              
-                console.error("Erro ao buscar datas:", error);
-                throw error; 
-            })
+    async findAll(): Promise<Date[]> {
+        try {
+            const response = await this.http.get<Date[]>('/scheduling/date');
+            return response.data;
+        } catch (error) {
+            console.error("Erro ao buscar datas:", error);
+            throw error;
+        }
     }
 }
