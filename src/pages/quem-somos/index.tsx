@@ -1,15 +1,45 @@
 import { GetStaticProps, NextPage } from "next";
-
-import { 
-    WhoWeAreContainer, 
-    WhoWeAreContainerText, 
-    WhoWeAreH2, 
-    WhoWeAreP, 
-    WhoWeAreSecondaryTitle, 
-    WhoWeAreTitle 
-} from "./style";  
 import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
+import styled from "styled-components";
+
+const WhoWeAreContainer = styled.main`
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+`
+
+const WhoWeAreTitle = styled.h1`
+    font: ${(props)=> props.theme.fonts.fontH1};
+`
+const WhoWeAreSecondaryTitle = styled.p`
+    font: ${(props)=> props.theme.fonts.body2Regular};
+    color: ${(props)=> props.theme.colors.grayPrimary};
+`
+
+const WhoWeAreContainerText = styled.div`
+    max-width: 25.5rem;
+    height: 100%;
+    
+    text-align: start;
+
+
+    padding-top: 2rem;
+`
+
+const WhoWeAreH2 = styled.h2`
+    font: ${(props)=> props.theme.fonts.fontH4};
+    color: ${(props)=> props.theme.colors.blackPrimary};
+`
+
+const WhoWeAreP = styled.p`
+    font: ${(props)=> props.theme.fonts.body1Regular};
+    color: ${(props)=> props.theme.colors.blackPrimary};
+`
 
 type WhoWeArePageProps = {
   paths: BreadcrumbType[]

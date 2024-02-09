@@ -1,7 +1,5 @@
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { Date } from "../../@core/domain/entities/dates";
-import { Time } from "../../@core/domain/entities/times";
 import { responsePoke } from "../../pages/agendar-consulta";
 import { UseHookFormQuery } from "../../utils/hooks/useFormQuery";
 import { CardError } from "../Cards/Error";
@@ -272,7 +270,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                                         dates.map((date, index)=>{
                                             return (
                                                 <option key={index} value={date}>
-                                                    <p>{date.toString()}</p>
+                                                    <p>{date}</p>
                                                 </option>
                                             )
                                         })

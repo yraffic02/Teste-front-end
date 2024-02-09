@@ -2,18 +2,15 @@ import { GetServerSideProps, NextPage } from "next";
 import dynamic from 'next/dynamic';
 import Head from "next/head";
 import { ListDateUseCase } from "../../@core/application/date/list-date.use-case";
+import { ListLocationUseCase } from "../../@core/application/location/list-locations.use-case";
+import { ListPokemonUseCase } from "../../@core/application/pokemon/list-pokemons.use-case";
+import { ListRegionUseCase } from "../../@core/application/region/list-regions.use-case";
 import { ListTimeUseCase } from "../../@core/application/time/list-time.use-case";
-import { Date } from "../../@core/domain/entities/dates";
-import { Time } from "../../@core/domain/entities/times";
-import { apiPoke } from "../../@core/infra/api-poke";
 import { Registry, container } from "../../@core/infra/containers/container-registry.api-local";
+import { RegistryApiPoke, containerApiPoke } from "../../@core/infra/containers/container-registry.api-poke";
 import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
-import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
-import { RegistryApiPoke, containerApiPoke } from "../../@core/infra/containers/container-registry.api-poke";
-import { ListLocationUseCase } from "../../@core/application/location/list-locations.use-case";
-import { ListRegionUseCase } from "../../@core/application/region/list-regions.use-case";
-import { ListPokemonUseCase } from "../../@core/application/pokemon/list-pokemons.use-case";
+import styled from "styled-components";
 
 export type responsePoke = {
     name: string,
@@ -22,12 +19,27 @@ export type responsePoke = {
 
 type queryPageProps = {
     paths: BreadcrumbType[],
-    dates: Date[], 
-    times: Time[],
+    dates: string[], 
+    times: string[],
     locations: responsePoke[],
     regions: responsePoke[]
     pokemon: responsePoke[]
 }
+
+const QueryPageContainer = styled.main`
+    min-height: calc(100vh - 104px - 61px);
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+`
+const QueryPageTitle = styled.h1`
+    font: ${(props)=> props.theme.fonts.fontH1};
+`
+const QueryPageSecondaryTitle = styled.p`
+    font: ${(props)=> props.theme.fonts.body2Regular};
+    color: ${(props)=> props.theme.colors.grayPrimary};
+`
 
 const FormClient = dynamic(()=> import('../../components/FormQuery'), {ssr: false})
 
