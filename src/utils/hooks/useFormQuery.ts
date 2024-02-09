@@ -3,8 +3,10 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { FormValues, formSchema } from "../schema/formSchema";
 import { toast } from "react-toastify";
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/router";
 
 export const UseHookFormQuery = () =>{
+    const router = useRouter();
     const [isForm, setIsFrom] = useState(true)
     const [cardSuccess, setCardSuccess] = useState(false)
     const [cardError, setCardError] = useState(false)
@@ -58,6 +60,9 @@ export const UseHookFormQuery = () =>{
         isForm,
         cardError,
         cardSuccess,
-        data
+        data,
+        setCardError,
+        setCardSuccess,
+        setIsFrom,
     }
 }
