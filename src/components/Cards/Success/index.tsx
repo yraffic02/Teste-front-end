@@ -1,13 +1,15 @@
 import Image from "next/image"
 import { CardButton, CardContainer, CardText, CardTextTitle } from "./style"
 import Link from "next/link"
+import { UseHookFormQuery } from "../../../utils/hooks/useFormQuery"
 
 type CardProps = {
     data: string,
-    hora: string
+    hora: string,
+    count: number
 }
 
-export const CardSuccess = ({data, hora}: CardProps) =>{
+export const CardSuccess = ({data, hora, count}: CardProps) =>{ 
     return(
         <CardContainer>
             <CardTextTitle>
@@ -21,7 +23,7 @@ export const CardSuccess = ({data, hora}: CardProps) =>{
             />
             <CardText>
                 Seu agendamento para dia {data}, às {hora},
-                para 0x pokémons foi realizado com sucesso!
+                para {count + 1}  pokémons foi realizado com sucesso!
             </CardText>
             <Link href="/">
                 <CardButton>

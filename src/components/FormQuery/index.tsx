@@ -39,7 +39,6 @@ type formQueryProps = {
 const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) => {
     const {
         errors, 
-        handleAddPokemon, 
         handleSubmit, 
         onSubmit, 
         register,
@@ -56,7 +55,6 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
         nextPokemonIndex
     } = UseHookFormQuery()
     
-
     return(
         <>
             {
@@ -364,7 +362,7 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                 </FormQueryContainer>
             }
             {
-                cardSuccess &&  <CardSuccess data={data?.data!} hora={data?.hora!}/>
+                cardSuccess &&  <CardSuccess data={data?.data!} hora={data?.hora!} count={nextPokemonIndex}/>
             }
             {
                 cardError &&  <CardError />
