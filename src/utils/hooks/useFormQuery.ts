@@ -2,9 +2,12 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { FormValues, formSchema } from "../schema/formSchema";
 import { toast } from "react-toastify";
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 
 export const UseHookFormQuery = () =>{
+    const [isForm, setIsFrom] = useState(true)
+    const [cardSuccess, setCardSuccess] = useState(false)
+    const [cardError, setCardError] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: 'all',
         reValidateMode: 'onChange',
@@ -28,9 +31,14 @@ export const UseHookFormQuery = () =>{
                     error: 'Erro ao enviar formulário. Por favor, tente novamente.',
                 }
             ).then( (res) => {
-                console.log(res)
+                if(res){
+                    setIsFrom(!isForm)
+                    setCardSuccess(!cardSuccess)
+                }
             }).catch((err) => {
                 console.log(err)
+                setIsFrom(!isForm)
+                setCardError(!cardError)
             });
     }
     
@@ -44,6 +52,9 @@ export const UseHookFormQuery = () =>{
         onSubmit,
         handleSubmit,
         register,
-        errors
+        errors,
+        isForm,
+        cardError,
+        cardSuccess
     }
 }
