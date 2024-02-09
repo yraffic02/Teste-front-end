@@ -1,6 +1,11 @@
-import { FormEvent, useEffect, useState } from "react";
-import { Input } from "../Input"
-import { Label } from "../Label"
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { Date } from "../../@core/domain/entities/dates";
+import { Time } from "../../@core/domain/entities/times";
+import { responsePoke } from "../../pages/agendar-consulta";
+import { UseHookFormQuery } from "../../utils/hooks/useFormQuery";
+import { Input } from "../Input";
+import { Label } from "../Label";
 import { InputSelect } from "../inputSelect";
 import {
     ButtonFormAdd,
@@ -17,15 +22,7 @@ import {
     FormQueryTextSmallBold,
     FormQueryTextSmallRegular,
     FormQueryTitle,
-} from "./style"
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import { responsePoke } from "../../pages/agendar-consulta";
-import { Date } from "../../@core/domain/entities/dates";
-import { Time } from "../../@core/domain/entities/times";
-import {yupResolver }  from '@hookform/resolvers/yup';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { FormValues, formSchema } from "../../utils/schema/formSchema";
+} from "./style";
 
 type formQueryProps = {
     dates: Date[],
@@ -37,51 +34,7 @@ type formQueryProps = {
 
 
 const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) => {
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        mode: 'all',
-        reValidateMode: 'onChange',
-        resolver: yupResolver(formSchema)
-    }) 
-
-    const notify = () => {
-            toast.info('Aguarde!', {
-                position: "top-center",
-                autoClose: false,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: false,
-                draggable: false,
-                theme: "light",
-            });
-    };
-    
-    const simulateServerRequest = async (formData: FormValues) => {
-        return new Promise<FormValues>((resolve, reject) => {
-            setTimeout(() => {
-                resolve(formData);
-            }, 2000);
-        });
-    };
-    
-    const onSubmit: SubmitHandler<FormValues> = async (data) => {
-            toast.promise(
-                simulateServerRequest(data),
-                {
-                    pending: 'Enviando formulário...',
-                    success: 'Formulário enviado com sucesso!',
-                    error: 'Erro ao enviar formulário. Por favor, tente novamente.',
-                }
-            ).then( (res) => {
-                console.log(res)
-            }).catch((err) => {
-                console.log(err)
-            });
-    }
-    
-    const handleAddPokemon = (e: FormEvent) =>{
-        e.preventDefault()
-        console.log('oi')
-    } 
+    const {errors, handleAddPokemon, handleSubmit, onSubmit, register} = UseHookFormQuery()
     
     return(
         <>
