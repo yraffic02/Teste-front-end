@@ -6,7 +6,7 @@ export class Time{
 
     constructor(public props: TimesProps){}
 
-    get date(){
+    get time(){
        return this.props.time;
     }
 

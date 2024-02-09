@@ -8,6 +8,7 @@ import { Registry, container } from "../../@core/infra/container-registrey.api-l
 import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
+import { ListTimeUseCase } from "../../@core/application/time/list-time.use-case";
 
 export type responsePoke = {
     name: string,
@@ -67,11 +68,11 @@ export const getServerSideProps: GetServerSideProps = async (context) =>{
         { url: '/', label: 'Home' },
         { url: '/agendar-consulta', label: 'Agendar Consulta' }
     ];
-    const useCase = container.get<ListDateUseCase>(Registry.ListDateUseCase)
-    const datesData = await useCase.execute();
+    const useCaseDate = container.get<ListDateUseCase>(Registry.ListDateUseCase)
+    const datesData = await useCaseDate.execute();
     
-    const resTime = await apiLocal.post('/scheduling/time');
-    const times = resTime.data;
+    const useCaseTime = container.get<ListTimeUseCase>(Registry.ListTimeUseCase)
+    const times = await useCaseTime.execute()
 
     const resLocation = await apiPoke.get('/location')
     const locations = resLocation.data.results
@@ -86,7 +87,7 @@ export const getServerSideProps: GetServerSideProps = async (context) =>{
         props: {
             paths,
             dates: datesData.map(date => date.props), 
-            times,
+            times: times.map(time => time.props),
             locations,
             regions, 
             pokemon
