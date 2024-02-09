@@ -1,9 +1,9 @@
 import { Container } from "inversify";
-import { apiLocal } from "./api-local";
-import { DateHttpGateway } from "./gateways/date-http.gateway";
-import { ListDateUseCase } from "../application/date/list-date.use-case";
-import { TimeHttpGateway } from "./gateways/time-http.gateway";
-import { ListTimeUseCase } from "../application/time/list-time.use-case";
+import { apiLocal } from "../api-local";
+import { DateHttpGateway } from "../gateways/date-http.gateway";
+import { ListDateUseCase } from "../../application/date/list-date.use-case";
+import { TimeHttpGateway } from "../gateways/time-http.gateway";
+import { ListTimeUseCase } from "../../application/time/list-time.use-case";
 
 export const Registry = {
     AxiosAdapter: Symbol.for("AxiosAdapter"),

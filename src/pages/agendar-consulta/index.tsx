@@ -6,13 +6,14 @@ import { ListTimeUseCase } from "../../@core/application/time/list-time.use-case
 import { Date } from "../../@core/domain/entities/dates";
 import { Time } from "../../@core/domain/entities/times";
 import { apiPoke } from "../../@core/infra/api-poke";
-import { Registry, container } from "../../@core/infra/container-registry.api-local";
+import { Registry, container } from "../../@core/infra/containers/container-registry.api-local";
 import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
-import { RegistryApiPoke, containerApiPoke } from "../../@core/infra/container-registry.api-poke";
+import { RegistryApiPoke, containerApiPoke } from "../../@core/infra/containers/container-registry.api-poke";
 import { ListLocationUseCase } from "../../@core/application/location/list-locations.use-case";
 import { ListRegionUseCase } from "../../@core/application/region/list-regions.use-case";
+import { ListPokemonUseCase } from "../../@core/application/pokemon/list-pokemons.use-case";
 
 export type responsePoke = {
     name: string,
@@ -76,14 +77,13 @@ export const getServerSideProps: GetServerSideProps = async (context) =>{
     const useCaseTime = container.get<ListTimeUseCase>(Registry.ListTimeUseCase)
     const useCaseLocations = containerApiPoke.get<ListLocationUseCase>(RegistryApiPoke.ListLocationUseCase)
     const useCaseRegions = containerApiPoke.get<ListRegionUseCase>(RegistryApiPoke.ListRegionUseCase)
-    
+    const useCasePokemon = containerApiPoke.get<ListPokemonUseCase>(RegistryApiPoke.ListPokemonUseCase)
+
     const datesData = await useCaseDate.execute();
     const times = await useCaseTime.execute();
     const locations = await useCaseLocations.execute();
     const regions = await useCaseRegions.execute()
-
-    const resPokemon = await apiPoke.get('/pokemon')
-    const pokemon = resPokemon.data.results
+    const pokemon = await useCasePokemon.execute()
 
     return {
         props: {
