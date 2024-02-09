@@ -9,3 +9,4 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({name, ...rest}, 
     )
 })
 
+Input.displayName = 'Input'

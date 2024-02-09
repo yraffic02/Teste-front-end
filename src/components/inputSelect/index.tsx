@@ -10,3 +10,5 @@ export const InputSelect = forwardRef<HTMLSelectElement, SelectProps>(({name, ty
         <InputContainer {...rest} name={name} ref={ref} typeWidth={typeWidth} as="select" />
     )
 })
+
+InputSelect.displayName = 'InputSelect';
