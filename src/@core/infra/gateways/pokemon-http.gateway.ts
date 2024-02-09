@@ -6,9 +6,9 @@ import { PokemonPoke } from "../../domain/entities/pokemons-poke";
 export class PokemonHttpGateway implements PokemonGateway{
     constructor(private http: AxiosInstance){}
 
-    async findAll(): Promise<LocationsPoke[]> {
+    async findAll(): Promise<any[]> {
         try {
-            const response = await this.http.get<PokemonPoke[]>('/pokemon');
+            const response = await this.http.get('/pokemon');
             return response.data.results
         } catch (error) {
             console.error("Erro ao buscar datas:", error);
