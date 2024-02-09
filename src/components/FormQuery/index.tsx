@@ -21,11 +21,13 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { responsePoke } from "../../pages/agendar-consulta";
+import { Date } from "../../@core/domain/entities/dates";
+import { Time } from "../../@core/domain/entities/times";
 
 
 type formQueryProps = {
-    dates: string[],
-    times: string[],
+    dates: Date[],
+    times: Time[],
     locations: responsePoke[],
     regions: responsePoke[],
     pokemons: responsePoke[]
@@ -34,7 +36,7 @@ type formQueryProps = {
 
 const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) => {  
     const notify = () => toast("Wow so easy !");
-
+    
     const onSubmit = (e: FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
         notify()
@@ -133,10 +135,16 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                         <Label labelHtmlFor="data">
                             Data para Atendimento
                         </Label>
-                        <InputSelect id="data">
+                        <InputSelect id="data"
+                            onChange={(e)=> console.log(e.target.value)}
+                        >
                             {
                                 dates.map((date, index)=>{
-                                    return <option key={index} value={date}>{date}</option>
+                                    return (
+                                        <option key={index} value={date.props?.date!}>
+                                            {date}
+                                        </option>
+                                    )
                                 })
                             }
                         </InputSelect>
@@ -149,7 +157,11 @@ const FormQuery = ({dates, times, locations, regions, pokemons}:formQueryProps) 
                         <InputSelect id="hora">
                             {
                                 times.map((time, index)=>{
-                                    return <option key={index} value={time}>{time}</option>
+                                    return (
+                                        <option key={index} value={time.props?.time}>
+                                            {time}
+                                        </option>
+                                    )
                                 })
                             }
                         </InputSelect>

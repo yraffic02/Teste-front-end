@@ -2,13 +2,14 @@ import { GetServerSideProps, NextPage } from "next";
 import dynamic from 'next/dynamic';
 import Head from "next/head";
 import { ListDateUseCase } from "../../@core/application/date/list-date.use-case";
-import { apiLocal } from "../../@core/infra/api-local";
+import { ListTimeUseCase } from "../../@core/application/time/list-time.use-case";
+import { Date } from "../../@core/domain/entities/dates";
+import { Time } from "../../@core/domain/entities/times";
 import { apiPoke } from "../../@core/infra/api-poke";
 import { Registry, container } from "../../@core/infra/container-registrey.api-local";
 import { Breadcrumb, BreadcrumbType } from "../../components/Breadcrumb";
 import { SecondaryHeader } from "../../components/SecondaryHeader";
 import { QueryPageContainer, QueryPageSecondaryTitle, QueryPageTitle } from "./style";
-import { ListTimeUseCase } from "../../@core/application/time/list-time.use-case";
 
 export type responsePoke = {
     name: string,
@@ -17,8 +18,8 @@ export type responsePoke = {
 
 type queryPageProps = {
     paths: BreadcrumbType[],
-    dates: string[], 
-    times: string[],
+    dates: Date[], 
+    times: Time[],
     locations: responsePoke[],
     regions: responsePoke[]
     pokemon: responsePoke[]
@@ -69,9 +70,9 @@ export const getServerSideProps: GetServerSideProps = async (context) =>{
         { url: '/agendar-consulta', label: 'Agendar Consulta' }
     ];
     const useCaseDate = container.get<ListDateUseCase>(Registry.ListDateUseCase)
-    const datesData = await useCaseDate.execute();
-    
     const useCaseTime = container.get<ListTimeUseCase>(Registry.ListTimeUseCase)
+    
+    const datesData = await useCaseDate.execute();
     const times = await useCaseTime.execute()
 
     const resLocation = await apiPoke.get('/location')
